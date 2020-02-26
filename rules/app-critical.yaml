@@ -16,10 +16,10 @@ alert_subject: "STAGING - App: CRITICAL"
 alert_text_type: alert_text_only
 alert_text: "PodName: {}\nNamespace: {} \n\nLOG: {}"
 alert_text_args:
-  - log
   - kubernetes.pod_name
   - kubernetes.namespace_name
-  
+  - log
+
 alert:
 - slack
 - post
