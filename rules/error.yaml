@@ -1,0 +1,33 @@
+name: error
+type: frequency
+index: local_staging-*
+num_events: 1
+timeframe:
+  minutes: 2
+realert: 
+  minutes: 0
+filter:
+- query:
+    query_string:
+      query: "log: [ERROR]"
+      
+alert_subject: "STAGING - App: [ERROR]"
+
+alert_text_type: alert_text_only
+alert_text: "PodName: {}\nNamespace: {} \n\nLOG: {}"
+alert_text_args:
+  - log
+  - kubernetes.pod_name
+  - kubernetes.namespace_name
+  
+alert:
+- slack
+- post
+
+slack_webhook_url: "https://smarttribune.ryver.com/application/webhook/YQoo671Q2DDc32R"
+
+http_post_url: "https://hook.notify17.net/api/raw/s49NBt_zgeiGzWhKY6DjQgLpglmIdzSu-wUeBMZ4WAk"
+http_post_static_payload:
+  title: "STAGING - App: [ERROR]"
+http_post_payload:
+  content: log

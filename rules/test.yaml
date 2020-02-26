@@ -1,0 +1,34 @@
+name: first
+type: frequency
+index: local_staging-*
+num_events: 1
+timeframe:
+  minutes: 2
+realert: 
+  minutes: 0
+filter:
+- query:
+    query_string:
+      query: "log: 404"
+      
+
+
+alert_subject: "Staging - Error: 404"
+
+alert_text_type: alert_text_only
+alert_text: "PodName: {}\nNamespace: {} \n\nLOG: {}"
+alert_text_args:
+  - kubernetes.pod_name
+  - kubernetes.namespace_name
+  - log
+  
+alert:
+- slack
+- post
+
+slack_webhook_url: "https://smarttribune.ryver.com/application/webhook/YQoo671Q2DDc32R"
+ 
+http_post_url: "https://hook.notify17.net/api/raw/s49NBt_zgeiGzWhKY6DjQgLpglmIdzSu-wUeBMZ4WAk"
+http_post_static_payload:
+  title: "Staging - Error: 404"
+  content: "A 404 error occured on Staging env"
