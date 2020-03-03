@@ -1,0 +1,26 @@
+name: error
+type: frequency
+index: local_production-*
+num_events: 1
+timeframe:
+  minutes: 2
+realert: 
+  minutes: 0
+filter:
+- query:
+    query_string:
+      query: "log: [ERROR]"
+      
+alert_subject: "PRODUCTION - App: [ERROR]"
+
+alert_text_type: alert_text_only
+alert_text: "PodName: {}\nNamespace: {} \n\nLOG: {}"
+alert_text_args:
+  - kubernetes.pod_name
+  - kubernetes.namespace_name
+  - log
+  
+alert:
+- slack
+
+slack_webhook_url: "https://smarttribune.ryver.com/application/webhook/DtvqVt8OxbY5WPX"

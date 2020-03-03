@@ -1,0 +1,33 @@
+name: app-critical
+type: frequency
+index: local_production-*
+num_events: 1
+timeframe:
+  minutes: 2
+realert: 
+  minutes: 0
+filter:
+- query:
+    query_string:
+      query: "log: *CRITICAL*"
+      
+alert_subject: "PRODUCTION - App: CRITICAL"
+
+alert_text_type: alert_text_only
+alert_text: "PodName: {}\nNamespace: {} \n\nLOG: {}"
+alert_text_args:
+  - kubernetes.pod_name
+  - kubernetes.namespace_name
+  - log
+
+alert:
+- slack
+- post
+
+slack_webhook_url: "https://smarttribune.ryver.com/application/webhook/DtvqVt8OxbY5WPX"
+
+http_post_url: "https://hook.notify17.net/api/raw/F01indC6ufgazjmy8LXD7_9etdJ44mOk-zPL26E9V-o"
+http_post_static_payload:
+  title: "PRODUCTION - App: CRITICAL"
+http_post_payload:
+  content: log
