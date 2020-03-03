@@ -9,7 +9,7 @@ realert:
 filter:
 - query:
     query_string:
-      query: "log: [ERROR]"
+      query: 'log: "[ERROR]"'
       
 alert_subject: "PRODUCTION - App: [ERROR]"
 
